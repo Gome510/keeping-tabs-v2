@@ -1,0 +1,10 @@
+.sidebar {
+  height: 100%;
+  background-color: rgba(141, 141, 141, 0.5);
+  color: white;
+  width: 256px;
+}
+
+.sidebar-content {
+  color: white;
+}
