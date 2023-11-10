@@ -3,8 +3,31 @@
   background-color: rgba(141, 141, 141, 0.5);
   color: white;
   width: 256px;
+  padding: 10px;
 }
 
 .sidebar-content {
   color: white;
+}
+
+.room {
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 5px;
+  border: 0;
+  margin-bottom: 5px;
+
+  display: flex;
+  align-items: center;
+
+  font-weight: 500;
+}
+
+.sidebar-title {
+  border-bottom: 1px white solid;
+  padding-bottom: 5px;
+  margin-top: 5px;
 }

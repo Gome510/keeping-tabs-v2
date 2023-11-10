@@ -22,13 +22,15 @@ function App() {
   
   */
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  const [currentRoom, setCurrentRoom] = useState("");
 
+  console.log(currentRoom);
   return (
     <>
       {isAuth ? (
         <div className="app">
-          <Sidebar />
-          <MainContent />
+          <Sidebar setCurrentRoom={setCurrentRoom} />
+          <MainContent currentRoom={currentRoom} />
         </div>
       ) : (
         <SignIn setIsAuth={setIsAuth} />
