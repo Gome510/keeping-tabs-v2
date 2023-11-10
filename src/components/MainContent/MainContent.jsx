@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MainContent.css";
-import { db } from "../../firebase/firebase-config";
+import Messages from "./Messages";
+import EnterText from "./EnterText";
 
-function MainContent({currentRoom}) {
+function MainContent({ currentRoom }) {
   if (currentRoom == "") {
-     return <div className="main-content"> Select a chat room</div>;
+    return <div className="main-content"> Select a chat room</div>;
   }
 
   //load messages
-  
-  
+  return (
+    <div className="main-content">
+      <Messages currentRoom={currentRoom} />
+      <EnterText />
+    </div>
+  );
 }
 
 export default MainContent;
