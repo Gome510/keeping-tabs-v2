@@ -14,6 +14,7 @@ const messageRef = collection(db, "messages");
 function Messages({ currentRoom }) {
   const [messages, setMessages] = useState([]);
 
+  //load messages
   useEffect(() => {
     const queryMessages = query(
       messageRef,
@@ -31,13 +32,22 @@ function Messages({ currentRoom }) {
     return () => unsubscribe();
   }, [currentRoom]);
 
-  //load messages
   return (
     <div className="message-container">
       {messages.map((message) => {
         return (
           <div className="message" key={message.messageId}>
-            {`${message.user}: ${message.text}`}
+            <img
+              className="pfp"
+              alt="profile picture"
+              src={message.pfp ? message.pfp : "/assets/images/pfp.svg"}
+              width={50}
+              height={50}
+            />
+            <div>
+              <h6>{message.user}</h6>
+              <p>{message.text}</p>
+            </div>
           </div>
         );
       })}
