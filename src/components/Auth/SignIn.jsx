@@ -1,16 +1,32 @@
 import React from "react";
-import { auth, provider } from "../../firebase/firebase-config";
-import { signInWithPopup } from "firebase/auth";
+import { auth, provider, db } from "../../firebase/firebase-config";
+import { signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
+import { collection, addDoc, query } from "firebase/firestore";
 import Cookies from "universal-cookie";
 import "./SignIn.css";
 
 const cookie = new Cookies();
+const userRef = collection(db, "users");
 
 function SignIn({ setIsAuth }) {
   async function signInWithGoogle() {
-    const result = await signInWithPopup(auth, provider);
-    cookie.set("auth-token", result.user.refreshToken);
-    setIsAuth(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      cookie.set("auth-token", result.user.refreshToken);
+
+      const { isNewUser } = getAdditionalUserInfo(result);
+      if (isNewUser) {
+        console.log("New user");
+        // Add the new user to your database here
+      } else {
+        console.log("Returning user");
+        // Handle returning user here
+      }
+
+      setIsAuth(true);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
