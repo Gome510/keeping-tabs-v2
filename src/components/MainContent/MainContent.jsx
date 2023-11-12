@@ -12,7 +12,7 @@ function MainContent({ currentRoom }) {
   return (
     <div className="main-content">
       <Messages currentRoom={currentRoom} />
-      <EnterText />
+      <EnterText currentRoom={currentRoom} />
     </div>
   );
 }
