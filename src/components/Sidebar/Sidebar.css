@@ -8,7 +8,9 @@
 }
 
 .sidebar-content {
-  color: white;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .room {
