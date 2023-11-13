@@ -39,9 +39,25 @@ function Sidebar({ setCurrentRoom }) {
     setCurrentRoom(room);
   }
 
+  function handleAddRoom() {}
+
   return (
     <div className="sidebar">
-      <h3 className="sidebar-title">Rooms</h3>
+      <div className="sidebar-header">
+        <h3 className="sidebar-title">Rooms</h3>
+        <div className="sidebar-options">
+          <button onClick={handleAddRoom}>
+            +{" "}
+            <img
+              onClick={handleAddRoom}
+              src="/assets/images/room.png"
+              width={15}
+              height={15}
+              alt="add a channel"
+            />
+          </button>
+        </div>
+      </div>
       <div className="sidebar-content">
         {rooms.map((room) => (
           <button
@@ -59,7 +75,3 @@ function Sidebar({ setCurrentRoom }) {
 }
 
 export default Sidebar;
-
-function SidebarItem() {
-  return <div>Sidebar</div>;
-}

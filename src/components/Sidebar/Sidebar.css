@@ -11,6 +11,13 @@
   overflow: auto;
   width: 100%;
 }
+.sidebar-options {
+  margin-left: auto;
+}
+.sidebar-options button {
+  border-radius: 5px;
+  border: none;
+}
 
 .room {
   height: 50px;
@@ -28,8 +35,10 @@
   font-weight: 500;
 }
 
-.sidebar-title {
+.sidebar-header {
   border-bottom: 1px white solid;
-  padding-bottom: 5px;
   margin-top: 5px;
+  margin-bottom: 10px;
+
+  display: flex;
 }
