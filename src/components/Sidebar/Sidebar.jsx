@@ -10,26 +10,31 @@ function Sidebar({ setCurrentRoom }) {
   const [rooms, setRooms] = useState([]);
 
   //update sidebar rooms
-  onAuthStateChanged(auth, (user) => {
-    console.log(auth.currentUser);
+  useEffect(() => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      console.log(auth.currentUser);
 
-    //create query
-    const queryUsers = query(
-      usersRef,
-      where("userId", "==", auth.currentUser.uid)
-    );
+      //create query
+      const queryUsers = query(
+        usersRef,
+        where("userId", "==", auth.currentUser.uid)
+      );
 
-    //recieve query data
-    const unsubscribe = onSnapshot(queryUsers, (snapshot) => {
-      let newRooms = [];
-      snapshot.forEach((doc) => {
-        newRooms = doc.data().rooms;
-        setRooms(newRooms);
+      //recieve query data
+      const unsubscribeSnapshot = onSnapshot(queryUsers, (snapshot) => {
+        let newRooms = [];
+        snapshot.forEach((doc) => {
+          newRooms = doc.data().rooms;
+          setRooms(newRooms);
+        });
       });
+
+      return () => unsubscribeSnapshot();
     });
 
-    return () => unsubscribe();
-  });
+    return () => unsubscribeAuth();
+  }, []);
+
   function handleRoomChange(room) {
     setCurrentRoom(room);
   }

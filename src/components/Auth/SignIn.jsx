@@ -14,10 +14,15 @@ function SignIn({ setIsAuth }) {
       const result = await signInWithPopup(auth, provider);
       cookie.set("auth-token", result.user.refreshToken);
 
+      //add new user document to database
       const { isNewUser } = getAdditionalUserInfo(result);
       if (isNewUser) {
         console.log("New user");
-        // Add the new user to your database here
+        await addDoc(userRef, {
+          user: auth.currentUser.displayName,
+          userId: auth.currentUser.uid,
+          rooms: [],
+        });
       } else {
         console.log("Returning user");
         // Handle returning user here
