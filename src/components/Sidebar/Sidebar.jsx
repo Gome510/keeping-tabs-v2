@@ -3,11 +3,13 @@ import "./Sidebar.css";
 import { db, auth } from "../../firebase/firebase-config";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import AddRoomModal from "./AddRoomModal";
 
 const usersRef = collection(db, "users");
 
 function Sidebar({ setCurrentRoom }) {
   const [rooms, setRooms] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   //update sidebar rooms
   useEffect(() => {
@@ -46,10 +48,9 @@ function Sidebar({ setCurrentRoom }) {
       <div className="sidebar-header">
         <h3 className="sidebar-title">Rooms</h3>
         <div className="sidebar-options">
-          <button onClick={handleAddRoom}>
+          <button onClick={() => setOpenModal(true)}>
             +{" "}
             <img
-              onClick={handleAddRoom}
               src="/assets/images/room.png"
               width={15}
               height={15}
@@ -58,6 +59,7 @@ function Sidebar({ setCurrentRoom }) {
           </button>
         </div>
       </div>
+
       <div className="sidebar-content">
         {rooms.map((room) => (
           <button
@@ -70,6 +72,7 @@ function Sidebar({ setCurrentRoom }) {
           </button>
         ))}
       </div>
+      {openModal && <AddRoomModal setOpenModal={setOpenModal} />}
     </div>
   );
 }
