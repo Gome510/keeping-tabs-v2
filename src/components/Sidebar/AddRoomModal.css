@@ -12,33 +12,48 @@
 
 .room-modal {
   background: rgb(138, 135, 135);
+  box-shadow: 0px 0px 5px black;
   padding: 20px;
   border-radius: 10px;
   color: black;
 }
 
-.room-modal button {
+.room-modal h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.room-modal-option {
   border-radius: 5px;
-  font-size: xx-large;
+  font-size: x-large;
   border: none;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 .room-modal button:hover {
   background-color: black;
   color: white;
 }
-.room-modal-header {
-  display: flex;
-}
 
 #exit-modal-button {
   background-color: transparent;
-  font-size: x-large;
-  color: black;
+  font-size: large;
+  color: white;
   padding: 0;
-  margin-left: auto;
+  border: none;
 }
 
 #exit-modal-button:hover {
-  color: white;
+  color: black;
+}
+
+.room-modal input {
+  width: 100%;
+  border-radius: 5px;
+  border: 0px solid black;
+  margin-bottom: 10px;
 }
