@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import { db, auth } from "../../firebase/firebase-config";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import AddRoomModal from "./AddRoomModal";
 
@@ -14,8 +20,6 @@ function Sidebar({ setCurrentRoom }) {
   //update sidebar rooms
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-      console.log(auth.currentUser);
-
       //create query
       const queryUsers = query(
         usersRef,
@@ -40,8 +44,6 @@ function Sidebar({ setCurrentRoom }) {
   function handleRoomChange(room) {
     setCurrentRoom(room);
   }
-
-  function handleAddRoom() {}
 
   return (
     <div className="sidebar">
