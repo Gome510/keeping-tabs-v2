@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { db, auth } from "../../firebase/firebase-config";
 import {
+  addDoc,
   collection,
   doc,
   getDocs,
@@ -13,7 +14,7 @@ import "./AddRoomModal.css";
 const messageRef = collection(db, "messages");
 const userRef = collection(db, "users");
 
-function AddRoomModal({ setOpenModal }) {
+function AddRoomModal({ setOpenModal, currentRooms }) {
   //TODO:Join and Create Room
   const [room, setRoom] = useState("");
   const [roomErr, setRoomErr] = useState("");
@@ -23,7 +24,8 @@ function AddRoomModal({ setOpenModal }) {
 
     const roomSnapshot = await getDocs(queryRoom);
     if (roomSnapshot.empty) {
-      setRoomErr("join-dne");
+      setRoomErr("This room does not exist.");
+      return;
     } else {
       setRoomErr("");
       //find user's document in db
@@ -32,6 +34,12 @@ function AddRoomModal({ setOpenModal }) {
         where("userId", "==", auth.currentUser.uid)
       );
       const userSnapshot = await getDocs(queryUser);
+
+      //check if user is already in that room
+      if (currentRooms.includes(room)) {
+        setRoomErr("You have already joined that room.");
+        return;
+      }
 
       //update rooms field of their document
       userSnapshot.docs.forEach((doc) => {
@@ -42,7 +50,19 @@ function AddRoomModal({ setOpenModal }) {
     }
   }
 
-  function handleCreate() {}
+  async function handleCreate() {
+    //check if room already exists
+    const queryRooms = query(messageRef, where("room", "==", room));
+    const roomSnapshot = await getDocs(queryRooms);
+
+    if (!roomSnapshot.empty) {
+      setRoomErr("This room already exists.");
+      return;
+    } else {
+      //add inital message
+      //add room to user
+    }
+  }
 
   return (
     <div className="room-modal-backdrop">
@@ -56,8 +76,7 @@ function AddRoomModal({ setOpenModal }) {
           value={room}
           onChange={(e) => setRoom(e.target.value)}
         />
-        {roomErr == "join-dne" && <p>This room does not exist.</p>}
-        {roomErr == "create-exists" && <p>This room already exists.</p>}
+        {roomErr && <p className="text-center">{roomErr}</p>}
         <div className="d-flex justify-content-around ">
           <button className="room-modal-option" onClick={handleCreate}>
             Create

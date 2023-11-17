@@ -74,7 +74,9 @@ function Sidebar({ setCurrentRoom }) {
           </button>
         ))}
       </div>
-      {openModal && <AddRoomModal setOpenModal={setOpenModal} />}
+      {openModal && (
+        <AddRoomModal setOpenModal={setOpenModal} currentRooms={rooms} />
+      )}
     </div>
   );
 }
