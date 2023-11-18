@@ -3,9 +3,9 @@ import { db, auth } from "../../firebase/firebase-config";
 import {
   addDoc,
   collection,
-  doc,
   getDocs,
   query,
+  serverTimestamp,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -15,7 +15,6 @@ const messageRef = collection(db, "messages");
 const userRef = collection(db, "users");
 
 function AddRoomModal({ setOpenModal, currentRooms }) {
-  //TODO:Join and Create Room
   const [room, setRoom] = useState("");
   const [roomErr, setRoomErr] = useState("");
 
@@ -59,8 +58,30 @@ function AddRoomModal({ setOpenModal, currentRooms }) {
       setRoomErr("This room already exists.");
       return;
     } else {
+      setRoomErr("");
       //add inital message
+      addDoc(messageRef, {
+        text: `${auth.currentUser.displayName} created this "${room}" room`,
+        room: room,
+        createdAt: serverTimestamp(),
+        user: auth.currentUser.displayName,
+        userId: auth.currentUser.uid,
+        pfp: auth.currentUser.photoURL,
+      });
+
+      //find user's document in db
+      const queryUser = query(
+        userRef,
+        where("userId", "==", auth.currentUser.uid)
+      );
+      const userSnapshot = await getDocs(queryUser);
+
       //add room to user
+      userSnapshot.docs.forEach((doc) => {
+        updateDoc(doc.ref, {
+          rooms: [...doc.data().rooms, room],
+        });
+      });
     }
   }
 
