@@ -10,14 +10,18 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import AddRoomModal from "./AddRoomModal";
-import RemoveRoomModal from "./RemoveRoomModal";
 
 const usersRef = collection(db, "users");
 
-function Sidebar({ setCurrentRoom }) {
+function Sidebar({ setCurrentRoom, currentRoom }) {
   const [rooms, setRooms] = useState([]);
   const [addRoom, setAddRoom] = useState(false);
-  const [removeRoom, setRemoveRoom] = useState(false);
+
+  useEffect(() => {
+    if (!rooms.includes(currentRoom)) {
+      setCurrentRoom("");
+    }
+  }, [rooms]);
 
   //update sidebar rooms
   useEffect(() => {
@@ -77,7 +81,6 @@ function Sidebar({ setCurrentRoom }) {
         ))}
       </div>
       {addRoom && <AddRoomModal setAddRoom={setAddRoom} currentRooms={rooms} />}
-      {removeRoom && <RemoveRoomModal setRemoveRoom={setRemoveRoom} />}
     </div>
   );
 }

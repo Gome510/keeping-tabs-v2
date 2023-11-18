@@ -24,13 +24,23 @@
   margin-bottom: 10px;
 }
 
-.room-modal-option {
+.room-modal p {
+  text-align: center;
+}
+
+.modal-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-options button {
   border-radius: 5px;
   font-size: x-large;
   border: none;
   width: 100px;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 5px;
 }
 
@@ -56,4 +66,9 @@
   border-radius: 5px;
   border: 0px solid black;
   margin-bottom: 10px;
+}
+
+.remove-room-options {
+  display: flex;
+  justify-content: space-around;
 }

@@ -9,12 +9,12 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import "./AddRoomModal.css";
+import "./Modal.css";
 
 const messageRef = collection(db, "messages");
 const userRef = collection(db, "users");
 
-function AddRoomModal({ setOpenModal, currentRooms }) {
+function AddRoomModal({ setAddRoom, currentRooms }) {
   const [room, setRoom] = useState("");
   const [roomErr, setRoomErr] = useState("");
 
@@ -88,7 +88,7 @@ function AddRoomModal({ setOpenModal, currentRooms }) {
   return (
     <div className="room-modal-backdrop">
       <div className="room-modal">
-        <button id="exit-modal-button" onClick={() => setOpenModal(false)}>
+        <button id="exit-modal-button" onClick={() => setAddRoom(false)}>
           X
         </button>
         <h1>Create or Join a Room</h1>
@@ -97,8 +97,8 @@ function AddRoomModal({ setOpenModal, currentRooms }) {
           value={room}
           onChange={(e) => setRoom(e.target.value)}
         />
-        {roomErr && <p className="text-center">{roomErr}</p>}
-        <div className="d-flex justify-content-around ">
+        {roomErr && <p>{roomErr}</p>}
+        <div className="modal-options ">
           <button className="room-modal-option" onClick={handleCreate}>
             Create
           </button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignIn from "./components/Auth/SignIn";
 import { auth } from "./firebase/firebase-config";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -29,7 +29,7 @@ function App() {
     <>
       {isAuth ? (
         <div className="app">
-          <Sidebar setCurrentRoom={setCurrentRoom} />
+          <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} />
           <MainContent currentRoom={currentRoom} />
         </div>
       ) : (

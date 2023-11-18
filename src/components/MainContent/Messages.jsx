@@ -11,6 +11,7 @@ import {
 
 const messageRef = collection(db, "messages");
 
+//TODO: Make messages scroll to the bottom on load.
 function Messages({ currentRoom }) {
   const [messages, setMessages] = useState([]);
 
