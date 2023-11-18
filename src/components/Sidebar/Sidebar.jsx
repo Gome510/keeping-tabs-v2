@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Sidebar.css";
+import "../Styles/Sidebar.css";
 import { db, auth } from "../../firebase/firebase-config";
 import {
   collection,

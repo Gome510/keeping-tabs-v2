@@ -9,7 +9,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import "./Modal.css";
+import "../Styles/Modal.css";
 
 const messageRef = collection(db, "messages");
 const userRef = collection(db, "users");

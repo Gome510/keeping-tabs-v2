@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./MainContent.css";
+import "../Styles/MainContent.css";
 import Messages from "./Messages";
 import EnterText from "./EnterText";
 import Header from "./Header";

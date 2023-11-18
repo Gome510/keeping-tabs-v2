@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./MainContent.css";
+
 import RemoveRoomModal from "./RemoveRoomModal";
 
 function Header({ currentRoom }) {
