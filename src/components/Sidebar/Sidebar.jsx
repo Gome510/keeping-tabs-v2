@@ -10,10 +10,11 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import AddRoomModal from "./AddRoomModal";
+import Profile from "./Profile";
 
 const usersRef = collection(db, "users");
 
-function Sidebar({ setCurrentRoom, currentRoom }) {
+function Sidebar({ setCurrentRoom, currentRoom, setIsAuth }) {
   const [rooms, setRooms] = useState([]);
   const [addRoom, setAddRoom] = useState(false);
 
@@ -80,6 +81,7 @@ function Sidebar({ setCurrentRoom, currentRoom }) {
           </button>
         ))}
       </div>
+      <Profile setIsAuth={setIsAuth} />
       {addRoom && <AddRoomModal setAddRoom={setAddRoom} currentRooms={rooms} />}
     </div>
   );

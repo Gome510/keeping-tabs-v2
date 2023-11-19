@@ -1,7 +1,7 @@
 import React from "react";
 import { auth, provider, db } from "../../firebase/firebase-config";
 import { signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
-import { collection, addDoc, query } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import Cookies from "universal-cookie";
 import "./SignIn.css";
 

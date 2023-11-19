@@ -10,6 +10,7 @@
 .sidebar-content {
   overflow: auto;
   width: 100%;
+  height: 80%;
 }
 .sidebar-options {
   margin-left: auto;
@@ -37,9 +38,37 @@
 
 .sidebar-header {
   border-bottom: 1px white solid;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  height: 7.5%;
+  margin-bottom: 5%;
 
   display: flex;
   align-items: center;
+}
+
+.profile {
+  background-color: lightgrey;
+  margin-top: auto;
+  height: 10%;
+  color: black;
+  font-size: normal;
+  font-weight: 500;
+
+  border-radius: 5px;
+  padding: 5px;
+  gap: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile img,
+.profile button {
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: transparent;
+}
+
+.profile button {
+  border: none;
 }

@@ -10,6 +10,7 @@ function Header({ currentRoom }) {
       <h5>{currentRoom}</h5>
       <div>
         <button type="button" onClick={() => setRemoveRoom(true)}>
+          Leave{" "}
           <img
             src="/assets/images/exit.png"
             width={20}
