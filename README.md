@@ -8,7 +8,7 @@ Left me wondering about:
 
 Demo: https://poetic-lollipop-ecbf18.netlify.app/
 
-Shout out to PedroTech for his amazing "React Firebase Realtime Chat App Tutorial": https://lnkd.in/gSJPPi3q
+Shout out to PedroTech for his amazing "React Firebase Realtime Chat App Tutorial": https://youtu.be/0gLr-pBIPhI?si=acY0Dpwa29cId1XU
 
 ## How To Run Locally
 1. Clone Repo
