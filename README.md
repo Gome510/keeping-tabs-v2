@@ -6,7 +6,7 @@ Left me wondering about:
 - Hiding API keys with .env files
 - Firebase Security Rules
 
-Demo: https://lnkd.in/gUAXWfvc
+Demo: https://poetic-lollipop-ecbf18.netlify.app/
 
 Shout out to PedroTech for his amazing "React Firebase Realtime Chat App Tutorial": https://lnkd.in/gSJPPi3q
 
