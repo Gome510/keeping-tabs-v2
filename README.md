@@ -3,11 +3,6 @@ Real-time chat app. Create or join a chatroom and send messages!
 
 I used this to learn about how to use Firebase Authentication and Firestore in React. I learned about making queries, creating and updating documents, setting up authentication providers, and more!
 
-Left me wondering about: 
-- Improving state management with Redux
-- Hiding API keys with .env files
-- Firebase Security Rules
-
 Demo: https://poetic-lollipop-ecbf18.netlify.app/
 
 Shout out to PedroTech for his amazing "React Firebase Realtime Chat App Tutorial": https://youtu.be/0gLr-pBIPhI?si=acY0Dpwa29cId1XU
