@@ -1,28 +1,27 @@
-import React from "react";
-import { auth } from "../../firebase/firebase-config";
-import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
+import { signOut } from "../../firebase/auth";
+import { useAuth } from "../../hooks/useAuth";
 
 const cookies = new Cookies();
 
-function Profile({ setIsAuth }) {
-  async function handleLogout() {
-    await signOut(auth);
-    cookies.remove("auth-token");
-    setIsAuth(false);
+function Profile() {
+  const { currentUser } = useAuth();
+
+  function handleLogout() {
+    signOut();
   }
 
   return (
     <div className="profile">
       <div>
         <img
-          src={auth.currentUser.photoURL}
+          src={currentUser.photoURL}
           width={50}
           height={50}
           alt="Your Profile Picture"
         />
       </div>
-      <div>{auth.currentUser.displayName}</div>
+      <div>{currentUser.displayName}</div>
       <div>
         <button onClick={handleLogout}>
           <img

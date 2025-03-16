@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { db, auth } from "../../firebase/firebase-config";
+import { db } from "../../firebase/firebase-config";
 
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useAuth } from "../../hooks/useAuth";
 
 function EnterText({ currentRoom }) {
   const [newMessage, setNewMessage] = useState("");
+  const { currentUser } = useAuth()
   const messageRef = collection(db, "messages");
 
   async function handleSubmit(e) {
@@ -19,9 +21,9 @@ function EnterText({ currentRoom }) {
         text: newMessage,
         room: currentRoom,
         createdAt: serverTimestamp(),
-        user: auth.currentUser.displayName,
-        userId: auth.currentUser.uid,
-        pfp: auth.currentUser.photoURL,
+        user: currentUser.displayName,
+        userId: currentUser.uid,
+        pfp: currentUser.photoURL,
       });
     } catch (error) {
       console.log(error);
