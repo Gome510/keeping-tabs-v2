@@ -1,33 +1,17 @@
-import React, { useState } from "react";
-import { db } from "../../firebase/firebase-config";
+import { useState } from "react";
 
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useAuth } from "../../hooks/useAuth";
+import { sendMessage } from "../../firebase/messages";
 
 function EnterText({ currentRoom }) {
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useAuth()
-  const messageRef = collection(db, "messages");
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (newMessage == "") {
-      return;
-    }
-
-    try {
-      await addDoc(messageRef, {
-        text: newMessage,
-        room: currentRoom,
-        createdAt: serverTimestamp(),
-        user: currentUser.displayName,
-        userId: currentUser.uid,
-        pfp: currentUser.photoURL,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    if (newMessage == "") return;
+    await sendMessage(currentUser,currentRoom,newMessage);
     setNewMessage("");
   }
 
@@ -37,7 +21,7 @@ function EnterText({ currentRoom }) {
         onChange={(e) => setNewMessage(e.target.value)}
         className="enter-text-box"
         placeholder="Say something nice!"
-        value={newMessage}
+        defaultValue={newMessage}
       />
       <button type="submit" className="send-button">
         Send
