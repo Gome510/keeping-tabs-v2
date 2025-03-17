@@ -6,11 +6,12 @@ import { sendMessage } from "../../firebase/messages";
 function EnterText({ currentRoom }) {
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useAuth()
+  
+  const isSendDisabled = newMessage === "";
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (newMessage == "") return;
     await sendMessage(currentUser,currentRoom,newMessage);
     setNewMessage("");
   }
@@ -23,7 +24,7 @@ function EnterText({ currentRoom }) {
         placeholder="Say something nice!"
         defaultValue={newMessage}
       />
-      <button type="submit" className="send-button">
+      <button type="submit" className="send-button" disabled={isSendDisabled}>
         Send
       </button>
     </form>
