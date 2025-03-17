@@ -14,7 +14,7 @@ import Profile from "./Profile";
 
 const usersRef = collection(db, "users");
 
-function Sidebar({ setCurrentRoom, currentRoom, setIsAuth }) {
+function Sidebar({ setCurrentRoom, currentRoom }) {
   const [rooms, setRooms] = useState([]);
   const [addRoom, setAddRoom] = useState(false);
 
@@ -22,7 +22,7 @@ function Sidebar({ setCurrentRoom, currentRoom, setIsAuth }) {
     if (!rooms.includes(currentRoom)) {
       setCurrentRoom("");
     }
-  }, [rooms]);
+  }, [rooms,currentRoom, setCurrentRoom]);
 
   //update sidebar rooms
   useEffect(() => {
@@ -81,7 +81,7 @@ function Sidebar({ setCurrentRoom, currentRoom, setIsAuth }) {
           </button>
         ))}
       </div>
-      <Profile setIsAuth={setIsAuth} />
+      <Profile />
       {addRoom && <AddRoomModal setAddRoom={setAddRoom} currentRooms={rooms} />}
     </div>
   );

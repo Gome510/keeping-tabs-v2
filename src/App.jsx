@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SignIn from "./components/Auth/SignIn";
-import { auth } from "./firebase/firebase-config";
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainContent from "./components/MainContent/MainContent";
-import Cookies from "universal-cookie";
 import "./App.css";
-
-const cookies = new Cookies();
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
   /* 
@@ -21,22 +18,21 @@ function App() {
       EnterText
   
   */
-  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [currentRoom, setCurrentRoom] = useState("");
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
-      {isAuth ? (
+      {isLoggedIn ? (
         <div className="app">
           <Sidebar
-            setIsAuth={setIsAuth}
             currentRoom={currentRoom}
             setCurrentRoom={setCurrentRoom}
           />
           <MainContent currentRoom={currentRoom} />
         </div>
       ) : (
-        <SignIn setIsAuth={setIsAuth} />
+      <SignIn />
       )}
     </>
   );
